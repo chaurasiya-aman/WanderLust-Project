@@ -1,0 +1,118 @@
+<%layout("layouts/boilerplate.ejs")-%>
+<body>
+  <br />
+  <div class="form-container row offset-lg-2">
+    <div class="col-lg-9">
+      <h2>Edit Your List</h2>
+      <br />
+      <form method="post" action="/listings/<%=list._id%>/edit?_method=PUT" class="needs-validation" enctype="multipart/form-data" novalidate>
+        <div>
+          <label for="title" class="form-label">Your title: </label>
+          <input
+            type="text"
+            placeholder="Type the title"
+            name="title"
+            id="title"
+            value="<%=list.title%>"
+            class="form-control"
+          />
+          <div class="valid-feedback">Nice Title</div>
+          <div class="invalid-feedback">Enter valid title</div>
+          <br />
+        </div>
+
+        <label for="description" class="form-label">Your description: </label>
+        <textarea
+          placeholder="Give description"
+          name="description"
+          required
+          id="description"
+          class="form-control"
+        ><%=list.description%></textarea>
+        <div class="invalid-feedback">Enter valid Description</div><br />
+
+        <p>Original Listing image: </p>
+        <img src="<%=originalImgUrl%>" width="250px" alt="list_image"><br><br>
+
+        <label for="image" class="form-label">Upload New Image: </label>
+        <input
+          type="file"
+          name="image"
+          id="image"
+          class="form-control"
+        />
+        <br />
+
+        <div class="row">
+          <div class="col-md-4">
+            <label for="price" class="form-label">Your price: </label>
+            <input
+              type="number"
+              placeholder="List price"
+              name="price"
+              id="price"
+              value="<%=list.price%>"
+              required
+              class="form-control"
+            />
+            <div class="invalid-feedback">Enter valid price</div><br />
+          </div>
+
+          <div class="col-md-8">
+            <label for="country" class="form-label">Your country: </label>
+            <input
+              type="text"
+              placeholder="Give country"
+              name="country"
+              id="country"
+              value="<%=list.country%>"
+              required
+              class="form-control"
+            />
+            <div class="invalid-feedback">Enter valid country</div><br />
+          </div>
+        </div>
+
+        <label for="location" class="form-label">Your location: </label>
+        <input
+          type="text"
+          placeholder="Give location"
+          name="location"
+          id="location"
+          value="<%=list.location%>"
+          required
+          class="form-control"
+        />
+        <div class="invalid-feedback">Enter valid location</div><br />
+
+        <!-- Category checkboxes -->
+        <div class="categories mb-3">
+          <label class="form-label">Select Categories:</label><br />
+          
+          <% const categories = ["farms", "rooms", "mountains", "beach", "pools", "iconic-city", "snowy", "boats", "camping"]; %>
+          <% categories.forEach(cat => { %>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="category_<%=cat.replace(/ /g, '_')%>"
+                name="category"
+                value="<%=cat%>"
+                <%= list.category && list.category.includes(cat) ? 'checked' : '' %>
+              />
+              <label class="form-check-label" for="category_<%=cat.replace(/ /g, '_')%>">
+                <%= cat.charAt(0).toUpperCase() + cat.slice(1).replace('-', ' ') %>
+              </label>
+            </div>
+          <% }) %>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-warning w-25">Edit</button><br /><br />
+        </div>
+      </form>
+      <a href="/listings/<%=list._id%>" class="back-button btn btn-outline-info">Back</a>
+      <br /><br />
+    </div>
+  </div>
+</body>

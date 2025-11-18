@@ -1,0 +1,66 @@
+<% layout("layouts/boilerplate.ejs") -%>
+
+<div
+  class="d-flex justify-content-center align-items-center mt-4 my-5"
+>
+  <div
+    class="card shadow-sm p-2 p-md-4 rounded-4 w-100"
+    style="max-width: 380px"
+  >
+    <h2 class="text-center mb-4 text-login fw-bold text-dark">Log In</h2>
+    <p
+      class="text-center mb-4 logo"
+    >
+      Wanderlust
+    </p>
+
+    <form 
+      action="/user/login"
+      method="POST"
+      class="needs-validation"
+      novalidate
+    >
+      <div class="mb-3 w-sm-100">
+        <input
+          type="text"
+          class="form-control w-sm-100"
+          id="username"
+          name="username"
+          placeholder="Username"
+          required
+        />
+        <div class="invalid-feedback">Enter valid username</div>
+      </div>
+
+      <div class="mb-3 w-sm-100">
+        <input
+          type="password"
+          class="form-control w-sm-100"
+          id="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <div class="invalid-feedback">Enter password</div>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary fw-semibold login">
+          Log In
+        </button>
+      </div>
+       <a href="/listings" class="btn btn-outline-dark mt-3 w-100 w-md-50">
+        Back
+      </a>
+    </form>
+
+    <div class="text-center mt-3">
+      <small>
+        Don't have an account?
+        <a href="/user/signup" class="text-primary text-decoration-none">
+          Sign Up
+        </a>
+      </small>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+.confirmation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.del-content {
+  width: 450px;
+  background-color: #fff;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.confirm-code,
+.code {
+  width: 100%;
+  margin: 5px 0;
+}
+
+ form.confirmed {
+    width: 100%;
+  }
+
+.d-flex {
+  justify-content: center;
+}
+@media (max-width: 430px) {
+ 
+  .del-content {
+    width: 95%;
+  }
+}

@@ -1,0 +1,68 @@
+<% layout("layouts/boilerplate.ejs") -%>
+
+<div class="container my-4">
+  <div class="head">
+    <h3 style="color: #fe424d">My Listings</h3>
+    <a href="/user/profile" class="back-button btn btn-outline-dark">Back</a>
+  </div>
+  <hr />
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 g-4">
+    <%if(allListings.length >0){%>
+    <% for (let listings of allListings) { %> <% let total = 0; let count =
+    listings.reviews && listings.reviews.length ? listings.reviews.length : 0;
+    if (count > 0) { for (let r of listings.reviews) { total += r.rating || 0; }
+    } let avg = count > 0 ? total / count : 0; %>
+
+    <div class="col">
+      <a
+        href="/listings/<%= listings._id %>"
+        class="text-decoration-none text-dark"
+      >
+        <div
+          class="card listing-card custome h-100 shadow-sm hover-shadow home-card"
+        >
+          <img
+            src="<%= listings.image.url %>"
+            class="card-img-top fixed-img"
+            alt="place_image"
+          />
+          <div class="card-body">
+            <h6><%= listings.title %></h6>
+            <small
+              ><b><%= listings.location %>, <%= listings.country %></b></small
+            >
+
+            <%- include("../includes/formRatings.ejs", { list: listings, avg })
+            %>
+
+            <p class="card-text mb-0">
+              ₹<%= listings.price.toLocaleString("en-IN") %>/night
+              <i class="tax-info">+18% GST</i>
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+    <%} else {%>
+      <div>
+        You haven't posted any lists...
+      </div>
+      <%}%>
+  </div>
+
+</div>
+<script>
+  const toggleBtn = document.getElementById("switchCheckDefault");
+  toggleBtn.addEventListener("click", () => {
+    console.log("clicked");
+    let taxbtn = document.getElementsByClassName("tax-info");
+    for (info of taxbtn) {
+      if (info.style.visibility != "visible") {
+        info.style.visibility = "visible";
+      } else {
+        info.style.visibility = "hidden";
+      }
+    }
+  });
+</script>

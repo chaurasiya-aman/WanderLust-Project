@@ -1,0 +1,221 @@
+<%layout("layouts/boilerplate.ejs")-%>
+<div class="form-container row offset-lg-2">
+  <div class="col-lg-9">
+    <br />
+    <h2>Create a New List</h2>
+    <br />
+    <form
+      method="post"
+      action="/listings/new"
+      class="needs-validation"
+      enctype="multipart/form-data"
+      novalidate
+    >
+      <div>
+        <label for="title" class="form-label">Enter the Title: </label>
+        <input
+          type="text"
+          id="title"
+          placeholder="Type the title"
+          name="title"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Enter Title please</div>
+        <div class="valid-feedback">Nice title</div>
+        <br />
+      </div>
+
+      <div>
+        <label for="description" class="form-label"
+          >Enter the Description: </label
+        ><br />
+        <textarea
+          id="description"
+          placeholder="Give description"
+          name="description"
+          class="form-control"
+          required
+        ></textarea>
+        <div class="invalid-feedback">Enter valid description</div>
+        <br />
+      </div>
+
+      <div>
+        <label for="image" class="form-label">Upload Image: </label><br />
+        <input
+          type="file"
+          id="image"
+          name="image"
+          class="form-control"
+          required
+        /><br />
+      </div>
+
+      <div class="categories">
+        <label class="form-label mb-2">Select Categories: </label>
+
+        <div>
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="farms"
+              name="category"
+              value="farms"
+            />
+            <label class="form-check-label" for="farms">Farms</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="rooms"
+              name="category"
+              value="rooms"
+            />
+            <label class="form-check-label" for="rooms">Rooms</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="mountains"
+              name="category"
+              value="mountains"
+            />
+            <label class="form-check-label" for="mountains">Mountains</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="beach"
+              name="category"
+              value="beach"
+            />
+            <label class="form-check-label" for="beach">Beach</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="pools"
+              name="category"
+              value="pools"
+            />
+            <label class="form-check-label" for="pools">Pools</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="iconic_city"
+              name="category"
+              value="iconic-city"
+            />
+            <label class="form-check-label" for="iconic_city"
+              >Iconic Cities</label
+            >
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="snowy"
+              name="category"
+              value="snowy"
+            />
+            <label class="form-check-label" for="snowy">Snowy</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="boats"
+              name="category"
+              value="boats"
+            />
+            <label class="form-check-label" for="boats">Boats</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="camping"
+              name="category"
+              value="camping"
+            />
+            <label class="form-check-label" for="camping">Camping</label>
+          </div>
+        </div>
+        <br />
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            <label for="price" class="form-label">Enter the Price: </label
+            ><br />
+            <input
+              type="number"
+              id="price"
+              placeholder="List price in Rs/-"
+              name="price"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">Enter valid price</div>
+            <br />
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div>
+            <label for="country" class="form-label">Enter the Country: </label
+            ><br />
+            <input
+              type="text"
+              id="country"
+              placeholder="Give country"
+              name="country"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">Enter valid country</div>
+            <br />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label for="location" class="form-label">Enter the Location: </label
+        ><br />
+        <input
+          type="text"
+          id="location"
+          placeholder="Give location"
+          name="location"
+          class="form-control"
+          required
+        />
+        <div class="invalid-feedback">Enter valid location</div>
+        <br />
+      </div>
+
+      <div class="text-center">
+        <button class="btn btn-primary btn-md w-25">Add</button><br />
+      </div>
+    </form>
+
+    <a href="/listings" class="btn btn-outline-dark">Back</a><br />
+    <br />
+  </div>
+</div>

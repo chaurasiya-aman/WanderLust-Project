@@ -1,0 +1,50 @@
+ <!-- --------------------------------------------Delete Confirmation Form-------------------------------- -->
+  <div class="confirmation" id="confirmBox">
+    <div class="del-content">
+      <h5 style="color: red">Do you really want to delete...??</h5>
+
+      <form
+        action="/listings/<%= list._id %>?_method=DELETE"
+        method="POST"
+        class="confirmed"
+      >
+        <div class="code">
+          <label for="code" class="form-label">Confirmation Code</label>
+          <input
+            type="number"
+            id="code"
+            class="form-control"
+            value="<%= otp %>"
+            readonly
+          />
+        </div>
+
+        <div class="confirm-code">
+          <label for="verify-code" class="form-label">
+            Enter Confirmation Code
+          </label>
+          <input
+            type="number"
+            id="verify-code"
+            class="form-control"
+            maxlength="6"
+            placeholder="Verify Confirmation code"
+          />
+        </div>
+
+        <div class="form d-flex gap-2 mt-3">
+          <button type="button" class="btn btn-secondary" id="cancel">
+            Cancel
+          </button>
+
+          <button type="submit" class="btn btn-danger" id="confirmBtn" disabled>
+            Confirm
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    window.otp = "<%= otp %>";
+  </script>

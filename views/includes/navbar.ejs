@@ -1,0 +1,57 @@
+<nav
+  class="navbar navbar-expand-md bg-body-tertiary border-bottom fixed-top w-100"
+>
+  <div class="container-fluid w-100 p-0">
+    <a class="navbar-brand" href="/">
+      <p class="logo ms-3 d-inline">WanderLust</p>
+    </a>
+
+    <button
+      class="navbar-toggler me-2"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse bg-white" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link hover-me mx-2" href="/">Home</a>
+        <a class="nav-link hover-me mx-2" href="/listings">Explore</a>
+      </div>
+
+      <div class="navbar-nav ms-5 d-none nav-search">
+        <form class="d-flex" role="search">
+          <input
+            class="form-control me-2 pe-5"
+            type="search"
+            placeholder="Search"
+          />
+          <button class="btn btn-danger" type="submit"><i class="fa-solid fa-magnifying-glass me-2"></i>Search</button>
+        </form>
+      </div>
+
+      <div
+        class="navbar-nav d-md-flex flex-row flex-nowrap justify-content-center align-items-center ms-auto pb-2"
+      >
+        <% if (!currUser) { %>
+        <a class="btn btn-secondary mx-2 signup-custome" href="/user/signup"
+          ><b>Sign up</b></a
+        >
+        <a class="btn btn-primary mx-2 login-custome me-4" href="/user/login"
+          ><b>Login</b></a
+        >
+        <% } else { %>
+        <a class="nav-link create-icon mx-2 create-custome" href="/listings/new"
+          ><i class="color-doger fa-solid fa-square-plus size"></i
+        ></a>
+        <a href="/user/profile" class="btn btn-outline-warning mx-2">
+          <i class="fa-solid fa-user"></i> @<%= currUser.username %>
+        </a>
+        
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

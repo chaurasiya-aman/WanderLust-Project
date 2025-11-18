@@ -1,0 +1,102 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .popUp-div {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000 !important;
+  }
+
+  .popUp-content {
+    min-width:310px;
+    max-width: 500px;
+    background-color: #fff;
+    border-radius: 1em;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    box-shadow: 5px 5px 15px rgba(255, 255, 255, 0.2);
+  }
+
+  .popUp-content > * {
+    width: 100%;
+  }
+
+  .error-btn {
+    z-index: 1;
+    width: 100%;
+    align-self: center;
+    position: relative;
+    margin: .5rem 0 ;
+  }
+
+  #heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+  }
+
+  .success {
+    color: green;
+  }
+
+  .danger {
+    color: red;
+  }
+  #msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 3;
+
+  }
+
+  @media (max-width: 430px) {
+    .popUp-content {
+      width: 97%;
+    }
+  }
+
+  @media (max-width: 770px) {
+    .popUp-content {
+      width: 450px;
+    }
+  }
+</style>
+
+<div class="popUp-div">
+  <div class="popUp-content">
+    <div id="heading"><h1 class="danger">Failed</h1></div>
+    <div id="msg"><h5>
+      <%=message%>
+    </h5></div>
+    <form action="/listings">
+      <button class="btn btn-primary error-btn">OK</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const btn = document.getElementsByClassName("btn")[0];
+  const popup = document.querySelector(".popUp-div");
+  document.body.style.overflow = "hidden";
+
+  btn.addEventListener("click", () => {
+    popup.style.display = "none";
+    document.body.style.overflow = "auto";
+  });
+</script>

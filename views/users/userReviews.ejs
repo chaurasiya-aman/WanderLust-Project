@@ -1,0 +1,76 @@
+<% layout("layouts/boilerplate.ejs") -%>
+
+<style>
+  .reviews-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .review-card {
+    border: 1px solid #ddd;
+    padding: 1.2rem;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+    width: 100%;
+  }
+
+  .review-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .star {
+    color: gold;
+    font-size: 1.3rem;
+  }
+
+  .rating-wrapper {
+    margin-bottom: 0.4rem;
+  }
+
+  @media (max-width: 576px) {
+    .review-card {
+      width: 100%;
+    }
+  }
+</style>
+
+<br />
+<div class="head">
+  <h2 style="color: #fe424d">Reviews Given By You</h2>
+  <a href="/user/profile" class="back-button btn btn-outline-dark">Back</a>
+</div>
+<hr />
+
+<% if (reviewedListings.length === 0) { %>
+<p>You have not reviewed any post yet.</p>
+<% } %>
+
+<div class="reviews-container">
+  <% reviewedListings.forEach(r => { %> <% const review = r.myReviews[0]; %>
+
+  <div class="review-card">
+    <h3><%= r.listing.title %></h3>
+
+    <div class="rating-wrapper">
+      <% for (let i = 1; i <= review.rating; i++) { %>
+      <span class="star"><i class="fa-solid fa-star"></i></span>
+      <% } %>
+    </div>
+
+    <p><strong>Your Review:</strong></p>
+    <p><%= review.comment %></p>
+
+    <a href="/listings/<%= r.listing._id %>" class="btn btn-primary mt-2"
+      >View Post</a
+    >
+  </div>
+
+  <% }) %>
+</div>
+<br />
+<br />

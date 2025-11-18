@@ -1,0 +1,93 @@
+<!-- -------------------------------------Show Review-------------------------------------------- -->
+<div class="container my-3">
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-8 col-lg-6">
+      <div class="accordion" id="reviewsAccordion">
+        <div class="accordion-item shadow-sm border-0 rounded">
+          <h2 class="accordion-header" id="headingReviews">
+            <button
+              class="bg-custome accordion-button collapsed"
+              type="button"
+              id="review"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseReviews"
+            >
+              Click to See All Reviews (<%= list.reviews.length %>)
+            </button>
+          </h2>
+          <div
+            id="collapseReviews"
+            class="accordion-collapse collapse"
+            data-bs-parent="#reviewsAccordion"
+          >
+            <div class="accordion-body p-3">
+              <% if (list.reviews.length === 0) { %>
+              <p class="text-muted text-center my-3">
+                No reviews yet. Be the first to add one!
+              </p>
+              <% } else { %>
+              <div class="row g-3">
+                <% for (let review of list.reviews) { %>
+                <div class="col-12 col-md-6">
+                  <div class="card h-100 shadow-sm pt-0 px-1 pb-1">
+                    <div class="card-body p-1">
+                      <div
+                        class="card-text d-flex justify-content-between align-items-center"
+                      >
+                        <% if (review.author && currUser &&
+                        currUser._id.equals(review.author._id)) { %>
+                        <a href="/user/profile" class="text-decoration-none user"
+                          ><i class="fa-solid fa-user"></i>
+                          @<%=review.author.username%></a
+                        >
+                        <form
+                          action="/listings/<%=list._id%>/reviews/<%=review._id%>?_method=DELETE"
+                          method="post"
+                        >
+                          <a
+                            href="/listings/<%=list._id%>/reviews/<%=review._id%>?_method=PUT"
+                            class="btn btn-sm rev-edit"
+                          >
+                            <i class="fa-solid fa-pencil text-warning"></i>
+                          </a>
+                          <button class="btn btn-sm rev-del">
+                            <i class="fa-solid fa-trash"></i>
+                          </button>
+                        </form>
+                        <%} else {%>
+                        <p class="text-decoration-none "
+                          ><i class="fa-solid fa-user"></i>
+                          @<%=review.author.username%></
+                        >
+                        <%}%>
+                      </div>
+                      <hr />
+                      <p class="mb-1">
+                        <small
+                          ><strong>Comment: </strong><%= review.comment
+                          %></small
+                        >
+                      </p>
+                      <p class="mb-0">
+                        <small><strong>Rating:</strong></small>
+                        <% for (let i = 1; i <= review.rating; i++) { %>
+                        <i class="fa-solid fa-star text-warning"></i>
+                        <% } %> <% for (let i = review.rating + 1; i <= 5; i++)
+                        { %>
+                        <i class="fa-regular fa-star text-warning"></i>
+                        <% } %>
+                        <small>(<%= review.rating %>/5)</small>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <% } %>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,135 @@
+<% layout("layouts/boilerplate.ejs") -%>
+
+<style>
+  body {
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(120deg, #a1c4fd, #c2e9fb, #fbc2eb, #a6c1ee);
+    background-size: 300% 300%;
+    animation: smoothMove 12s ease-in-out infinite;
+  }
+
+  @keyframes smoothMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .destination-img {
+    height: 220px;
+    object-fit: cover;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
+  .card {
+    border: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Responsive improvements */
+  @media (max-width: 768px) {
+    .card {
+      margin-bottom: 1.5rem;
+      width: 100%;
+    }
+  }
+
+  h1, h2 {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  }
+</style>
+
+<div class="container mt-5 p-3">
+  <div class="text-center py-5">
+    <h1 class="display-4 fw-bold text-primary ">Welcome to WanderLust</h1>
+    <p class="lead text-muted">
+      Find your next adventure — book beautiful stays around the world.
+    </p>
+    <a href="/listings" class="btn btn-outline-primary btn-lg mt-3">
+      Explore Listings
+    </a>
+  </div>
+
+  <div class="mt-5">
+    <h2 class="text-center mb-4 fw-bold text-primary">Featured Destinations</h2>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 justify-content-center">
+      <!-- Beach -->
+      <div class="col d-flex justify-content-center">
+        <div class="card h-100 shadow-sm" style="max-width: 22rem;">
+          <img
+            src="https://hblimg.mmtcdn.com/content/hubble/img/varkala/mmt/destination/m_destination_Varkala_landscape_l_400_640.jpg"
+            class="card-img-top destination-img"
+            alt="Beach Destination"
+          />
+          <div class="card-body text-center">
+            <h5 class="card-title">Beach Paradise</h5>
+            <p class="card-text text-muted">
+              Enjoy the sunshine and relax on golden sands.
+            </p>
+            <a href="/listings" class="btn btn-primary btn-md">View</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mountain -->
+      <div class="col d-flex justify-content-center">
+        <div class="card h-100 shadow-sm" style="max-width: 22rem;">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrR9w-TjEKkByt1dyiwdeICGRvsftXPeHGog&s"
+            class="card-img-top destination-img"
+            alt="Mountain Destination"
+          />
+          <div class="card-body text-center">
+            <h5 class="card-title">Mountain Escape</h5>
+            <p class="card-text text-muted">
+              Find peace and adventure in breathtaking landscapes.
+            </p>
+            <a href="/listings" class="btn btn-primary btn-md">View</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- City -->
+      <div class="col d-flex justify-content-center">
+        <div class="card h-100 shadow-sm" style="max-width: 22rem;">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToREaFxvx6t2bDz-s9ABO3jRaDtKE61mB5kQ&s"
+            class="card-img-top destination-img"
+            alt="City Destination"
+          />
+          <div class="card-body text-center">
+            <h5 class="card-title">City Lights</h5>
+            <p class="card-text text-muted">
+              Experience vibrant nightlife and cultural wonders.
+            </p>
+            <a href="/listings" class="btn btn-primary btn-md">View</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%if(!currUser) {%>
+  <div class="text-center my-5 py-5 bg-light rounded shadow-sm">
+    <h2 class="fw-bold">Start Your Journey Today</h2>
+    <p class="text-muted">
+      Create an account and explore thousands of unique listings.
+    </p>
+    <a href="/user/signup" class="btn btn-success btn-lg">Join Now</a>
+  </div>
+  <%}%>
+  <br>
+</div>
