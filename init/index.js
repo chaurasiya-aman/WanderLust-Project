@@ -1,8 +1,11 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
 const Listing = require("../models/listing.js");
 const initData = require("./data.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+// rest of your code...
+
+const MONGO_URL = process.env.ATLAS_DB_URL;
 const GEOCODE_URL = "https://nominatim.openstreetmap.org/search"; // free OSM geocoding
 
 main()
@@ -27,7 +30,7 @@ const initDB = async () => {
     const listingsWithGeo = [];
 
     for (const obj of initData.data) {
-       obj.owner = '6918bcfd85e543a24546ec19'; 
+       obj.owner = '691bf84651ac6cb71497e5de'; 
       const query = `${obj.location}, ${obj.country}`;
       const url = `${GEOCODE_URL}?q=${encodeURIComponent(query)}&format=json&limit=1`;
 
