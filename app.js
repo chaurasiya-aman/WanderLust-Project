@@ -87,7 +87,7 @@ app.use("/listings/:id/reviews", reviewsRouter);
 
 main()
   .then(() => {
-    console.log("Connection to DB wanderlust is successfull");
+    console.log("Connection to DB TravelNest is successfull");
   })
   .catch((err) => {
     console.log(err);
