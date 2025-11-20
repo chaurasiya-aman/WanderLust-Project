@@ -21,10 +21,10 @@ const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const secreteKey = process.env.SECRET_KEY;
 
-//db URl
+
 const dbUrl = process.env.ATLAS_DB_URL;
 
-// "691bf84651ac6cb71497e5de"
+
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   crypto: {
