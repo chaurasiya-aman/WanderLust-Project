@@ -3,14 +3,31 @@ const ExpressError = require("../utils/ExpressError.js");
 const geocodeAddress = require("../utils/geocode.js");
 
 module.exports.index = async (req, res) => {
-  const allListings = await Listing.find({}).populate("reviews");
-  res.render("listings/index.ejs", { allListings });
+  const searchTerm = typeof req.query.q === "string" ? req.query.q.trim() : "";
+  const filter = searchTerm
+    ? {
+        $or: ["title", "description", "location", "country"].map((field) => ({
+          [field]: { $regex: escapeRegex(searchTerm), $options: "i" },
+        })),
+      }
+    : {};
+  const allListings = await Listing.find(filter).populate("reviews");
+  res.locals.showListingSearch = true;
+  res.locals.searchTerm = searchTerm;
+  res.render("listings/index.ejs", { allListings, searchTerm });
 };
+
+function escapeRegex(value) {
+  const regexSpecialChars = new Set(".*+?^${}()|[]");
+  const backslash = String.fromCharCode(92);
+  return [...value]
+    .map((char) => (regexSpecialChars.has(char) || char === backslash ? backslash + char : char))
+    .join("");
+}
 
 module.exports.getNew = (req, res) => {
   res.render("listings/new.ejs");
 };
-
 
 module.exports.postNew = async (req, res, next) => {
   try {
@@ -56,7 +73,7 @@ module.exports.getShow = async (req, res) => {
     .populate({
       path: "reviews",
       populate: {
-        path: "author",
+        path: "author", 
       },
     })
     .populate("owner");

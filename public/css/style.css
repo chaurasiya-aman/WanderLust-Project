@@ -293,9 +293,24 @@ body {
   color: dodgerblue;
 }
 
-@media (min-width: 1024px) {
+.nav-search {
+  flex: 1;
+  min-width: 180px;
+  max-width: 520px;
+  padding: 0.5rem 1rem;
+}
+
+.nav-search form {
+  width: 100%;
+}
+
+.nav-search input {
+  min-width: 0;
+}
+
+@media (max-width: 767.98px) {
   .nav-search {
-    display: flex !important;
+    max-width: none;
   }
 }
 
